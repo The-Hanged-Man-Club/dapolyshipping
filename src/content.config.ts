@@ -1,9 +1,10 @@
-import { defineCollection, z } from "astro:content";
 import { SocialLinks } from "@fujocoded/zod-transform-socials";
+import { defineCollection } from "astro:content";
 import { docsLoader } from "@astrojs/starlight/loaders";
 import { docsSchema } from "@astrojs/starlight/schema";
-import { topicSchema } from "starlight-sidebar-topics/schema";
 import { glob } from "astro/loaders";
+import { topicSchema } from "starlight-sidebar-topics/schema";
+import { z } from "astro/zod";
 
 const mods = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/mods/" }),

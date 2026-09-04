@@ -1,4 +1,5 @@
 // @ts-check
+
 import { defineConfig } from "astro/config";
 import favicons from "astro-favicons";
 import icon from "astro-icon";
@@ -40,7 +41,7 @@ export default defineConfig({
             items: [
               {
                 label: "DA Poly Sharing",
-                autogenerate: { directory: "sharing/" },
+                items: [{ autogenerate: { directory: "sharing/" } }],
               },
             ],
           },
@@ -55,39 +56,39 @@ export default defineConfig({
               "exchange/treats",
               {
                 label: "Tutorials",
-                autogenerate: { directory: "exchange/tutorials/" },
+                items: [{ autogenerate: { directory: "exchange/tutorials/" } }],
               },
               {
                 label: "Current Exchange",
                 badge: { text: "New", variant: "success" },
                 items: [
                   {
-                    label: "2025 Collection",
-                    link: "https://archiveofourown.org/collections/dapolyex2025/",
+                    label: "2026 Collection",
+                    link: "https://archiveofourown.org/collections/dapolyex2026/",
                   },
                   {
                     label: "Tag Nominations",
-                    link: "https://archiveofourown.org/tag_sets/25091",
+                    link: "https://archiveofourown.org/tag_sets/31781",
                   },
                   {
                     label: "SIGN-UP HERE!",
-                    link: "https://archiveofourown.org/collections/dapolyex2025/signups/new",
+                    link: "https://archiveofourown.org/collections/dapolyex2026/signups/new",
                   },
                   {
                     label: "Nominations Spreadsheet",
-                    link: "https://docs.google.com/spreadsheets/d/1i8zVpxuR5n88zcZRqkoi_yWDMDVXEz6bQveHa7wSuBU/edit?usp=sharing",
+                    link: "https://docs.google.com/spreadsheets/d/1LS1XPSFdkb2mCmmxzM6VFf8hnSdy6uTqM0V_NzCVFX4/edit?gid=815088230#gid=815088230",
                   },
                   {
                     label: "AutoAO3App: Tags",
-                    link: "https://autoao3app.fandom.tools/#/dapolyex2025/tagset",
+                    link: "https://autoao3app.fandom.tools/#/dapolyex2026/tagset",
                   },
                   {
                     label: "AutoAO3App: Requests",
-                    link: "https://autoao3app.fandom.tools/#/dapolyex2025/all",
+                    link: "https://autoao3app.fandom.tools/#/dapolyex2026/all",
                   },
                   {
                     label: "Treatless List",
-                    link: "https://docs.google.com/spreadsheets/d/1PshNZg8xlqbfwIPboo0WJTgvaWei3731hqe62HikIBA/edit?usp=sharing",
+                    link: "https://docs.google.com/spreadsheets/d/1M6p14iyATJnncwQFxz80At-hAbH0_m5HXUe6kuvvxlw/edit?gid=0#gid=0",
                   },
                 ],
               },
@@ -98,6 +99,10 @@ export default defineConfig({
                     label: "Parent Collection",
                     link: "https://archiveofourown.org/collections/dapolyex/",
                     badge: { text: "All Works", variant: "tip" },
+                  },
+                  {
+                    label: "2025 Collection",
+                    link: "https://archiveofourown.org/collections/dapolyex2025/",
                   },
                   {
                     label: "2024 Collection",
@@ -119,7 +124,7 @@ export default defineConfig({
               },
             ],
           },
-					{
+          {
             label: "Mod Team & Philosophy",
             link: "../../../mods",
             icon: "seti:favicon",
