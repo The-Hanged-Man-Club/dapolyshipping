@@ -6,7 +6,9 @@ const year = new Date().getFullYear();
 
 <Footer />
 <div class="footer">
-  &copy; {year} The Hanged Man Club. All rights reserved.
+  &copy; {year}
+  <a href="https://thehangedman.club">The Hanged Man Club</a>. All rights
+  reserved.
 </div>
 
 <style>
@@ -14,6 +16,6 @@ const year = new Date().getFullYear();
   @reference "../styles/global.css";
 
   .footer {
-    @apply mx-auto mt-4 w-2/3 border-t py-4 text-center text-sm;
+    @apply mx-auto mt-4 w-2/3 py-4 text-center text-sm;
   }
 </style>
