@@ -1,6 +1,7 @@
 // @ts-check
 
-import { defineConfig } from "astro/config";
+import { defineConfig, passthroughImageService } from "astro/config";
+
 import favicons from "astro-favicons";
 import icon from "astro-icon";
 import metaTags from "astro-meta-tags";
@@ -13,9 +14,13 @@ import starlightSidebarTopics from "starlight-sidebar-topics";
 import starlightThemeRapide from "starlight-theme-rapide";
 import tailwindcss from "@tailwindcss/vite";
 
+const isWindowsDev =
+  process.platform === "win32" && process.argv.some((a) => a.includes("dev"));
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://dapolyshipping.neocities.org",
+  image: isWindowsDev ? { service: passthroughImageService() } : undefined,
 
   integrations: [
     metaTags(),
