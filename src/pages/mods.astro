@@ -2,7 +2,7 @@
 export const prerender = false;
 
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
-import ModCard from "../../components/ModCard.astro";
+import ModCard from "../components/ModCard.astro";
 
 import { getLiveCollection } from "astro:content";
 
@@ -24,9 +24,11 @@ const dapolyMods = allMods!.filter((mod) =>
   }}
   hasSidebar={true}
 >
-  {
-    dapolyMods.map(async (mod) => {
-      return (
+  <div
+    class="grid grid-cols-1 items-end justify-items-start gap-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3"
+  >
+    {
+      dapolyMods.map((mod) => (
         <ModCard
           id={mod.data.id}
           name={mod.data.name}
@@ -34,10 +36,9 @@ const dapolyMods = allMods!.filter((mod) =>
           links={mod.data.links}
           mod_duties={mod.data.mod_duties}
         />
-      );
-    })
-  }
-
+      ))
+    }
+  </div>
   <h2>Mod Philosophy</h2>
 
   Dragon Age Polyshipping is an internal event of the <strong

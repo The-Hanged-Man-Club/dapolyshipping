@@ -21,7 +21,7 @@ const isWindowsDev =
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://dapolyshipping.neocities.org",
+  site: "https://dapolyshipping.thehangedman.club",
   compressHTML: true,
   // @ts-ignore: needed to render images locally on Windows
   image: isWindowsDev ? { service: passthroughImageService() } : undefined,
