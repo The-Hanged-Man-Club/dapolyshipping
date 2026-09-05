@@ -70,8 +70,8 @@ export default defineConfig({
       logo: {
         src: "/public/favicon.svg",
       },
-      pagefind: false,
       components: {
+        Footer: "./src/components/Footer.astro",
         SocialIcons: "./src/components/SocialIcons.astro",
       },
       plugins: [
