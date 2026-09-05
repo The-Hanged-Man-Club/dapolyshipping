@@ -1,71 +1,48 @@
 ---
-import type { ImageMetadata } from "astro";
-import type { SocialsSchema } from "@fujocoded/zod-transform-socials";
-import { Icon } from "astro-icon/components";
+import type { SocialLinksData } from "@fujocoded/zod-transform-socials/zod4";
 
 interface Props {
+  id: string;
   name: string;
-  avatar: ImageMetadata;
-  links: Array<SocialsSchema>;
+  avatar: string;
+  links: SocialLinksData;
+  mod_duties: string[];
 }
 
-const props = Astro.props;
+import { Icon } from "astro-icon/components";
 
-const altText: string = `${props.name}'s Avatar`;
+const props = Astro.props as Props;
 ---
 
-<div class="modcard">
-  <div>
-    <img src={props.avatar.src} alt={altText} width={100} />
+<div class="grid grid-flow-col grid-rows-2 gap-x-5 font-bold">
+  <div class="row-span-2 w-18.75">
+    <img
+      src={props.avatar}
+      alt={`${props.name}'s avatar`}
+      class="bg-rose-pine-dawn-foam dark:bg-rose-pine-foam w-18.75 rounded-full"
+      loading="lazy"
+    />
   </div>
-  <div>
-    <h3>{props.name}</h3>
-    <ul class:list={{ hidden: props.links.length == 0 }}>
+
+  <div class="justify-end">{props.name}</div>
+
+  <div class="social self-start">
+    <p class="inline-flex gap-2.5">
       {
         props.links.map((link) => (
-          <li>
-            <a href={link.url}>
-              {link.icon ? (
-                <>
-                  <Icon name={link.icon} title={link.platform} />
-                </>
-              ) : (
-                <>
-                  <Icon
-                    name={"lucide:home"}
-                    title={`${props.name}'s website`}
-                  />
-                </>
-              )}
-            </a>
-          </li>
+          <a href={link.url}>
+            {link.icon ? (
+              <>
+                <Icon name={link.icon} title={link.platform} />
+              </>
+            ) : (
+              <>
+                <Icon name={"lucide:home"} title={`${props.name}'s website`} />
+              </>
+            )}
+          </a>
         ))
       }
-    </ul>
+    </p>
   </div>
 </div>
-
-<style>
-  .modcard {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    min-width: 50%;
-  }
-
-  ul {
-    list-style-type: none;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: start;
-    align-items: end;
-    gap: 20px;
-    padding-left: 0px;
-  }
-
-  img {
-    border-radius: 100%;
-  }
-</style>

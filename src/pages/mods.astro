@@ -1,0 +1,80 @@
+---
+export const prerender = false;
+
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import ModCard from "../components/ModCard.astro";
+
+import { getLiveCollection } from "astro:content";
+
+const { entries: allMods } = await getLiveCollection("mods");
+
+const dapolyMods = allMods!.filter((mod) =>
+  mod.data.mod_duties.includes("da poly")
+);
+---
+
+<StarlightPage
+  frontmatter={{
+    title: "Mod Team & Philosophy",
+    description: "Meet the folks who keep the exchange running.",
+    prev: false,
+    next: false,
+    tableOfContents: false,
+    topic: "exchanges",
+  }}
+  hasSidebar={true}
+>
+  <div
+    class="grid grid-cols-1 items-end justify-items-start gap-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3"
+  >
+    {
+      dapolyMods.map((mod) => (
+        <ModCard
+          id={mod.data.id}
+          name={mod.data.name}
+          avatar={mod.data.avatar}
+          links={mod.data.links}
+          mod_duties={mod.data.mod_duties}
+        />
+      ))
+    }
+  </div>
+  <h2>Mod Philosophy</h2>
+
+  Dragon Age Polyshipping is an internal event of the <strong
+    >The Hanged Man Club</strong
+  >, a Swedish-based non-profit association whose goal is to support creative
+  fan projects, events, and communities. The Hanged Man Club is run by
+  volunteers and is not affiliated with BioWare or Electronic Arts. You can read
+  more about
+  <strong>The Hanged Man Club</strong> on our <a
+    href="https://thehangedman.club">website</a
+  >. When you participate in this event, you are agreeing to follow the rules
+  and guidelines set forth by the club, including our <a
+    href="https://thehangedman.club/community/code/">Code of Conduct</a
+  >.
+
+  <h3>Our Goals as Mods</h3>
+
+  In addition to the Code of Conduct linked above, for this event, our goal as
+  moderators is to try ensure two things: 1. Creators are matched to someone who
+  they've indicated they'd like to create for, and (hopefully) enjoy creating
+  for that individual. 2. Everyone who is eligible receives a gift they could
+  reasonably be expected to enjoy. At minimum, their gift should not violate
+  their do not wants, feature a character or ship from their requests, and
+  attempt to hit on some of their likes (if provided). We realize this is not
+  100% foolproof. Sometimes matches are not perfect or the process of creating
+  ends up more difficult than expected. Sometimes creators miss the mark for
+  their recipient. Ultimately, even if things are not perfect - if the creation
+  period ends up stressful or your gift isn't _exactly_ what you expected, we
+  hope that in the end, you still had fun and want to join us for our next
+  event!
+
+  <h3>Communication & Participant Privacy</h3>
+
+  We are, in general, an extremely privacy conscious moderation team. We will
+  never share participant contact information without explicit permission. We
+  also do not believe in “naming and shaming” and therefore, will not share the
+  details of any moderation action taken against a participant. However, we will
+  strive to be as transparent as possible with our communications.
+</StarlightPage>

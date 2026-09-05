@@ -1,0 +1,21 @@
+---
+import Footer from "@astrojs/starlight/components/Footer.astro";
+
+const year = new Date().getFullYear();
+---
+
+<Footer />
+<div class="footer">
+  &copy; {year}
+  <a href="https://thehangedman.club">The Hanged Man Club</a>. All rights
+  reserved.
+</div>
+
+<style>
+  @reference "tailwindcss";
+  @reference "../styles/global.css";
+
+  .footer {
+    @apply mx-auto mt-4 w-2/3 py-4 text-center text-sm;
+  }
+</style>
