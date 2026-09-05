@@ -34,6 +34,7 @@ If plagiarism is highly contested and disputed Art Theft is even more so. We
 have compiled a list of examples which we consider Art Theft.
 
 - Reposting someone else's art, moodboard, or fanedit.
+
 <p role="note">fic/art rec lists should link to these works, not repost them from an account that does not belong to the artist/author.</p>
 - Removing someone's signature, watermark, or identifying symbol through
   cropping or editing.

@@ -7,7 +7,7 @@ import tseslint from "typescript-eslint";
 export default [
   { files: ["**/*.{js,mjs,cjs,ts}"] },
   { languageOptions: { globals: globals.browser } },
-  { ignores: [".astro/*", ".vscode/*"] },
+  { ignores: ["node_modules/", "dist/", "*.config.*", ".astro/", ".vscode/"] },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   ...eslintPluginAstro.configs.recommended,

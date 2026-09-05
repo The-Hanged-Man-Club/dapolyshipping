@@ -1,20 +1,26 @@
 {
   "name": "dapolyshipping",
   "type": "module",
-  "version": "3.0.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
     "lint": "npx eslint .",
-    "format": "npx prettier . --write"
+    "format": "npx prettier . --write",
+    "astro-update": "npx @astrojs/upgrade",
+    "update": "npx npm-check-updates -u && npm i",
+    "postinstall": "husky",
+    "prepare": "husky"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/netlify": "^8.2.5",
     "@astrojs/react": "^6.0.5",
+    "@astrojs/sitemap": "^3.7.4",
     "@astrojs/starlight": "^0.42.0",
     "@astrojs/starlight-tailwind": "^5.0.0",
+    "@astrojs/ts-plugin": "^1.10.11",
     "@fontsource/bellota": "^5.3.0",
     "@fontsource/monaspace-radon": "^5.3.0",
     "@fontsource/poppins": "^5.3.0",
@@ -30,6 +36,7 @@
     "astro-icon": "^1.2.0",
     "astro-meta-tags": "^0.4.1",
     "astro-robots-txt": "^1.0.0",
+    "csv-parse": "^7.0.2",
     "dayjs": "^1.11.23",
     "sharp": "^0.35.4",
     "starlight-image-zoom": "^0.16.0",
@@ -38,13 +45,29 @@
     "starlight-theme-rapide": "^0.6.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.69.0",
+    "@typescript-eslint/parser": "^8.69.0",
     "eslint": "^10.10.0",
     "eslint-plugin-astro": "^3.1.0",
+    "eslint-plugin-css": "^0.12.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.4.1",
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tailwindcss": "^4.3.3",
-    "typescript": "^7.0.2"
+    "typescript-eslint": "^8.69.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint",
+      "prettier --write"
+    ],
+    "*.{json,html,astro,css,md,mdx}": [
+      "prettier --write"
+    ]
   }
 }
