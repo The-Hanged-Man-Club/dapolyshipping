@@ -5,8 +5,10 @@ import { defineConfig, passthroughImageService } from "astro/config";
 import favicons from "astro-favicons";
 import icon from "astro-icon";
 import metaTags from "astro-meta-tags";
+import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
 import robotsTxt from "astro-robots-txt";
+import sitemap from "@astrojs/sitemap";
 import starlight from "@astrojs/starlight";
 import starlightImageZoom from "starlight-image-zoom";
 import starlightLinksValidator from "starlight-links-validator";
@@ -20,10 +22,48 @@ const isWindowsDev =
 // https://astro.build/config
 export default defineConfig({
   site: "https://dapolyshipping.neocities.org",
+  compressHTML: true,
+  // @ts-ignore: needed to render images locally on Windows
   image: isWindowsDev ? { service: passthroughImageService() } : undefined,
 
   integrations: [
+    sitemap(),
     metaTags(),
+    favicons(),
+    icon(),
+    react(),
+    robotsTxt({
+      policy: [
+        {
+          userAgent: "*",
+          disallow: ["/search", "/_astro/"],
+          crawlDelay: 5,
+        },
+        {
+          userAgent: "Googlebot",
+          allow: "/",
+          disallow: ["/_astro/"],
+          crawlDelay: 5,
+        },
+        {
+          userAgent: "CCBot",
+          disallow: "/",
+        },
+        {
+          userAgent: "GPTBot",
+          disallow: "/",
+        },
+        {
+          userAgent: "ChatGPT-User",
+          disallow: "/",
+        },
+        {
+          userAgent: "Slurp",
+          crawlDelay: 30,
+        },
+      ],
+    }),
+    ,
     starlight({
       title: "Dragon Age Polyshipping",
       customCss: ["./src/styles/global.css"],
@@ -152,42 +192,10 @@ export default defineConfig({
         },
       ],
     }),
-    favicons(),
-    robotsTxt({
-      policy: [
-        {
-          userAgent: "*",
-          disallow: ["/search", "/_astro/"],
-          crawlDelay: 5,
-        },
-        {
-          userAgent: "Googlebot",
-          allow: "/",
-          disallow: ["/_astro/"],
-          crawlDelay: 5,
-        },
-        {
-          userAgent: "CCBot",
-          disallow: "/",
-        },
-        {
-          userAgent: "GPTBot",
-          disallow: "/",
-        },
-        {
-          userAgent: "ChatGPT-User",
-          disallow: "/",
-        },
-        {
-          userAgent: "Slurp",
-          crawlDelay: 30,
-        },
-      ],
-    }),
-    icon(),
-    react(),
   ],
+
   vite: {
     plugins: [tailwindcss()],
   },
+  adapter: netlify(),
 });
